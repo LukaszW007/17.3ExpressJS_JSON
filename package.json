@@ -1,0 +1,25 @@
+{
+  "name": "17.3ExpressJS_JSON",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LukaszW007/17.3ExpressJS_JSON.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LukaszW007/17.3ExpressJS_JSON/issues"
+  },
+  "homepage": "https://github.com/LukaszW007/17.3ExpressJS_JSON#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3"
+  }
+}
