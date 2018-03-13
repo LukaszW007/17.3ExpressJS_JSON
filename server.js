@@ -1,30 +1,31 @@
+var fs = require('fs');
 var express = require('express');
+var bodyParser = require('body-parser');
+
+
 var app = express();
 
-app.get('/', function (req, res) {
-    console.log('GET request');
-    res.send('Hello GET');
+app.use(bodyParser.json());
+
+stringifyFile = '';
+
+app.get('/getNote', function (req, res) {
+    fs.readFile('./example.json', 'UTF-8', function (err, data) {
+        if (err) throw err;
+        stringifyFile = data;
+        res.send(data);
+    });
 });
 
-var server = app.listen(3000, function() {
-    console.log('Przykładowa aplikacja nasłuchuje na http://localhost:3000');
+app.post('/updateNote/:note', function (req, res) {
+    fs.writeFile('./example.json', stringifyFile, function (err) {
+        if (err) throw err;
+        stringifyFile = stringifyFile + req.params.note;
+        res.send(stringifyFile);
+        console.log('file updated!');
+    });
 });
 
-app.post('/',function(req,res){
-    console.log('POST request');
-    res.send('Hello POST');
-});
+var server = app.listen(3000);
 
-app.delete('/del_usr',function (req,res) {
-    console.log('DELETE request');
-    res.send('hi DELETE');
-});
-app.get('/list_user', function (req, res) {
-    console.log('Otrzymałem żądanie GET do strony /list_user');
-    res.send('Strona z listą użytkowników!');
-});
-
-app.get('/ab*cd', function(req, res) {
-    console.log('Otrzymałem żądanie GET do strony /ab*cd');
-    res.send('Wzór pasuje');
-});
+//just use npm start to run app
